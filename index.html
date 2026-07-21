@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>॥ शुभ विवाह ॥ - Wedding Invitation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Tangerine:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --maroon: #8B1A2B;
+            --gold: #D4A843;
+            --deep-gold: #B8860B;
+            --cream: #FFF8EC;
+            --soft-pink: #FFF0F3;
+            --dark-red: #5C0E1A;
+            --saffron: #F4A460;
+            --white: #FFFDF7;
+            --text-dark: #3D1C1C;
+            --text-gold: #9B6B1E;
+            --shadow-gold: rgba(180, 130, 40, 0.35);
+            --border-gold: #C8963E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans Devanagari', 'Cormorant Garamond', serif;
+            background: #1a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image:
+                radial-gradient(ellipse at center, #2d0f0f 0%, #0d0404 60%, #000000 100%);
+            background-attachment: fixed;
+        }
+
+        /* Floating particles */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            opacity: 0;
+            animation: floatUp 8s infinite ease-in;
+            pointer-events: none;
+            color: var(--gold);
+            text-shadow: 0 0 12px var(--shadow-gold);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(110vh) rotate(0deg) scale(0.3);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            40% {
+                opacity: 0.6;
+            }
+            80% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Main Invitation Card */
+        .invitation-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 750px;
+            perspective: 1500px;
+        }
+
+        .invitation-card {
+            position: relative;
+            background: var(--cream);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 8px var(--border-gold),
+                0 0 0 16px var(--maroon),
+                0 0 0 22px var(--gold),
+                0 0 0 30px var(--dark-red),
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 120px rgba(180, 120, 30, 0.25);
+            animation: cardGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes cardGlow {
+            0%,
+            100% {
+                box-shadow: 0 0 0 8px var(--border-gold), 0 0 0 16px var(--maroon), 0 0 0 22px var(--gold), 0 0 0 30px var(--dark-red), 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 120px rgba(180, 120, 30, 0.25);
+            }
+            50% {
+                box-shadow: 0 0 0 8px var(--border-gold), 0 0 0 16px var(--maroon), 0 0 0 22px var(--gold), 0 0 0 30px var(--dark-red), 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 180px rgba(210, 150, 50, 0.45);
+            }
+        }
+
+        /* Decorative Border Pattern */
+        .border-pattern-top,
+        .border-pattern-bottom {
+            width: 100%;
+            height: 45px;
+            background:
+                repeating-linear-gradient(90deg,
+                    var(--gold) 0px,
+                    var(--gold) 2px,
+                    transparent 2px,
+                    transparent 8px,
+                    var(--maroon) 8px,
+                    var(--maroon) 10px,
+                    transparent 10px,
+                    transparent 16px),
+                linear-gradient(180deg, var(--dark-red) 0%, var(--maroon) 50%, var(--dark-red) 100%);
+            position: relative;
+        }
+
+        .border-pattern-top::after,
+        .border-pattern-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gold);
+            box-shadow: 0 2px 8px var(--shadow-gold);
+        }
+
+        .border-pattern-bottom::after {
+            bottom: auto;
+            top: 0;
+        }
+
+        /* Motif Row */
+        .motif-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 20px 8px;
+            background: linear-gradient(180deg,
+                    rgba(139, 26, 43, 0.08) 0%,
+                    transparent 100%);
+            font-size: 36px;
+            color: var(--gold);
+        }
+
+        .motif-row i {
+            text-shadow: 0 0 20px var(--shadow-gold);
+            animation: kalashGlow 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .motif-row i:nth-child(2) {
+            font-size: 48px;
+            animation-delay: 0.5s;
+        }
+
+        .motif-row i:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes kalashGlow {
+            0%,
+            100% {
+                text-shadow: 0 0 20px var(--shadow-gold);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 45px rgba(255, 180, 50, 0.8);
+                transform: scale(1.08);
+            }
+        }
+
+        /* Ganesh Invocation */
+        .ganesh-section {
+            text-align: center;
+            padding: 10px 30px 0;
+        }
+
+        .ganesh-icon {
+            font-size: 64px;
+            color: var(--gold);
+            display: inline-block;
+            animation: gentleBounce 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px rgba(180, 120, 30, 0.6));
+            cursor: default;
+        }
+
+        @keyframes gentleBounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            70% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .shloka {
+            font-family: 'Noto Sans Devanagari', serif;
+            color: var(--maroon);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 4px;
+            letter-spacing: 1px;
+            opacity: 0.85;
+        }
+
+        /* Main Content */
+        .card-content {
+            padding: 10px 35px 25px;
+            text-align: center;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(255, 215, 140, 0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(180, 100, 40, 0.1) 0%, transparent 50%),
+                var(--cream);
+        }
+
+        /* Ornamental Divider */
+        .ornament-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 10px 0 16px;
+        }
+
+        .ornament-line {
+            width: 60px;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .ornament-diamond {
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            box-shadow: 0 0 10px var(--shadow-gold);
+            animation: diamondPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes diamondPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 10px var(--shadow-gold);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 180, 50, 0.9);
+            }
+        }
+
+        .ornament-icon {
+            font-size: 1.3rem;
+            color: var(--gold);
+            filter: drop-shadow(0 0 6px var(--shadow-gold));
+        }
+
+        /* Title Section */
+        .title-marathi {
+            font-family: 'Noto Sans Devanagari', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--maroon);
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+        }
+
+        .main-title {
+            font-family: 'Great Vibes', 'Tangerine', cursive;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--maroon);
+            line-height: 1;
+            margin: 4px 0;
+            text-shadow: 1px 1px 0 rgba(180, 130, 40, 0.4);
+            letter-spacing: 2px;
+        }
+
+        .sub-title-marathi {
+            font-family: 'Noto Sans Devanagari', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-gold);
+            letter-spacing: 3px;
+        }
+
+        /* Couple Names */
+        .couple-section {
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .names-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .name-block {
+            text-align: center;
+            position: relative;
+        }
+
+        .name-marathi {
+            font-family: 'Noto Sans Devanagari', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--maroon);
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(139, 26, 43, 0.2);
+            transition: transform 0.3s, text-shadow 0.3s;
+        }
+
+        .name-marathi:hover {
+            transform: scale(1.05);
+            text-shadow: 0 4px 15px rgba(200, 100, 40, 0.5);
+        }
+
+        .name-english {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-gold);
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        .name-label {
+            font-family: 'Noto Sans Devanagari', serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--saffron);
+            letter-spacing: 1px;
+        }
+
+        .heart-icon {
+            font-size: 1.8rem;
+            color: var(--gold);
+            animation: plusGlow 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px var(--shadow-gold));
+        }
+
+        @keyframes plusGlow {
+            0%,
+            100% {
+                color: var(--gold);
+                text-shadow: 0 0 10px var(--shadow-gold);
+            }
+            50% {
+                color: #F0C060;
+                text-shadow: 0 0 30px rgba(255, 200, 60, 0.9);
+            }
+        }
+
+        /* Details Section */
+        .details-section {
+            background: linear-gradient(135deg,
+                    rgba(139, 26, 43, 0.06) 0%,
+                    rgba(180, 130, 40, 0.08) 50%,
+                    rgba(139, 26, 43, 0.06) 100%);
+            border: 2px solid rgba(180, 130, 40, 0.35);
+            border-radius: 20px;
+            padding: 22px 28px;
+            margin: 18px 0;
+            position: relative;
+            box-shadow: inset 0 0 40px rgba(180, 130, 40, 0.08);
+        }
+
+        .details-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+            font-family: 'Noto Sans Devanagari', serif;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            flex-wrap: wrap;
+        }
+
+        .detail-icon {
+            font-size: 1.3rem;
+            color: var(--gold);
+            flex-shrink: 0;
+            width: 24px;
+            text-align: center;
+        }
+
+        .detail-highlight {
+            color: var(--maroon);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .detail-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--maroon);
+            letter-spacing: 1px;
+        }
+
+        .venue-name {
+            font-family: 'Noto Sans Devanagari', serif;
+            font-weight: 700;
+            color: var(--dark-red);
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+        }
+
+        /* Blessings */
+        .blessings-text {
+            font-family: 'Noto Sans Devanagari', serif;
+            color: var(--text-gold);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-top: 14px;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .card-footer {
+            text-align: center;
+            padding: 10px 30px 20px;
+            font-family: 'Noto Sans Devanagari', serif;
+            font-size: 0.9rem;
+            color: var(--maroon);
+            font-weight: 600;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .footer-icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+            vertical-align: middle;
+            margin: 0 4px;
+            filter: drop-shadow(0 0 6px var(--shadow-gold));
+        }
+
+        /* RSVP Button */
+        .rsvp-section {
+            text-align: center;
+            padding: 0 35px 28px;
+        }
+
+        .rsvp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 45px;
+            background: linear-gradient(135deg, var(--maroon) 0%, var(--dark-red) 50%, var(--maroon) 100%);
+            color: var(--gold);
+            font-family: 'Noto Sans Devanagari', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(139, 26, 43, 0.4);
+        }
+
+        .rsvp-btn:hover {
+            background: linear-gradient(135deg, var(--gold) 0%, #C8963E 50%, var(--gold) 100%);
+            color: var(--dark-red);
+            border-color: var(--dark-red);
+            box-shadow: 0 10px 35px rgba(200, 150, 50, 0.6);
+            transform: translateY(-3px);
+            letter-spacing: 4px;
+        }
+
+        .rsvp-btn:active {
+            transform: scale(0.96);
+        }
+
+        .rsvp-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .rsvp-btn:hover::after {
+            opacity: 1;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-box {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 35px 30px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            border: 4px solid var(--gold);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            animation: modalPop 0.5s ease;
+        }
+
+        @keyframes modalPop {
+            0% {
+                transform: scale(0.7) translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--maroon);
+            transition: transform 0.3s;
+            background: none;
+            border: none;
+            font-family: serif;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            transform: rotate(90deg);
+            color: var(--dark-red);
+        }
+
+        .modal-title {
+            font-family: 'Noto Sans Devanagari', serif;
+            font-size: 1.6rem;
+            color: var(--maroon);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .modal-message {
+            font-family: 'Noto Sans Devanagari', serif;
+            color: var(--text-dark);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            animation: gentleBounce 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px var(--shadow-gold));
+        }
+
+        /* Sparkle on click */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: sparkleBurst 0.8s ease-out forwards;
+            color: var(--gold);
+            text-shadow: 0 0 8px var(--shadow-gold);
+        }
+
+        @keyframes sparkleBurst {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--dx), var(--dy)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .invitation-card {
+                border-radius: 16px;
+                box-shadow: 0 0 0 5px var(--border-gold), 0 0 0 10px var(--maroon), 0 0 0 14px var(--gold), 0 0 0 18px var(--dark-red), 0 15px 40px rgba(0, 0, 0, 0.5);
+            }
+            .main-title {
+                font-size: 2.4rem;
+            }
+            .name-marathi {
+                font-size: 1.7rem;
+            }
+            .card-content {
+                padding: 8px 18px 20px;
+            }
+            .details-section {
+                padding: 14px 16px;
+            }
+            .detail-row {
+                font-size: 0.9rem;
+            }
+            .motif-row {
+                font-size: 28px;
+                gap: 14px;
+            }
+            .motif-row i:nth-child(2) {
+                font-size: 36px;
+            }
+            .ganesh-icon {
+                font-size: 46px;
+            }
+            .border-pattern-top,
+            .border-pattern-bottom {
+                height: 30px;
+            }
+            .rsvp-btn {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .main-title {
+                font-size: 1.9rem;
+            }
+            .name-marathi {
+                font-size: 1.4rem;
+            }
+            .card-content {
+                padding: 6px 10px 16px;
+            }
+            .rsvp-btn {
+                padding: 10px 24px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .invitation-card {
+                box-shadow: none;
+                border-radius: 0;
+                page-break-inside: avoid;
+            }
+            .particles-container,
+            .rsvp-section,
+            .modal-overlay {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating particles (Font Awesome icons) -->
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <!-- Main Invitation -->
+    <div class="invitation-wrapper">
+        <div class="invitation-card" id="invitationCard">
+
+            <!-- Top Border Pattern -->
+            <div class="border-pattern-top"></div>
+
+            <!-- Motif Row with Font Awesome icons -->
+            <div class="motif-row">
+                <i class="fa-solid fa-gem"></i>
+                <i class="fa-solid fa-sparkles"></i>
+                <i class="fa-solid fa-gem"></i>
+            </div>
+
+            <!-- Ganesh Invocation -->
+            <div class="ganesh-section">
+                <i class="fa-solid fa-om ganesh-icon"></i>
+                <p class="shloka">॥ श्री गणेशाय नमः ॥</p>
+                <p class="shloka" style="font-size:0.8rem; margin-top:2px;">वक्रतुंड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
+            </div>
+
+            <!-- Ornament Divider -->
+            <div class="ornament-divider">
+                <span class="ornament-line"></span>
+                <span class="ornament-diamond"></span>
+                <span class="ornament-line"></span>
+                <i class="fa-solid fa-star ornament-icon"></i>
+                <span class="ornament-line"></span>
+                <span class="ornament-diamond"></span>
+                <span class="ornament-line"></span>
+            </div>
+
+            <!-- Card Content -->
+            <div class="card-content">
+                <p class="title-marathi">॥ शुभ विवाह ॥</p>
+                <h1 class="main-title">Wedding Invitation</h1>
+                <p class="sub-title-marathi">सौ. अविस्मरणीय सोहळा</p>
+
+                <!-- Ornament with heart icon -->
+                <div class="ornament-divider" style="margin:8px 0;">
+                    <i class="fa-solid fa-star ornament-icon"></i>
+                    <span class="ornament-line" style="width:35px;"></span>
+                    <i class="fa-solid fa-heart ornament-icon" style="font-size:1rem;"></i>
+                    <span class="ornament-line" style="width:35px;"></span>
+                    <i class="fa-solid fa-star ornament-icon"></i>
+                </div>
+
+                <!-- Couple Names -->
+                <div class="couple-section">
+                    <div class="names-container">
+                        <div class="name-block">
+                            <p class="name-label">वधू</p>
+                            <p class="name-marathi">प्रियंका</p>
+                            <p class="name-english">Priyanka</p>
+                        </div>
+                        <i class="fa-solid fa-heart heart-icon"></i>
+                        <div class="name-block">
+                            <p class="name-label">वर</p>
+                            <p class="name-marathi">रोहन</p>
+                            <p class="name-english">Rohan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Details -->
+                <div class="details-section">
+                    <div class="detail-row">
+                        <i class="fa-solid fa-calendar-days detail-icon"></i>
+                        <span>दिनांक :</span>
+                        <span class="detail-date">२१ फेब्रुवारी २०२६</span>
+                        <span style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--text-gold);">| 21 Feb 2026</span>
+                    </div>
+                    <div class="detail-row">
+                        <i class="fa-solid fa-clock detail-icon"></i>
+                        <span>मुहूर्त :</span>
+                        <span class="detail-highlight">सायंकाळी ६:३० वाजता</span>
+                        <span style="color:var(--text-gold);">| 6:30 PM</span>
+                    </div>
+                    <div class="detail-row">
+                        <i class="fa-solid fa-location-dot detail-icon"></i>
+                        <span>स्थळ :</span>
+                        <span class="venue-name">श्री साई मंगल कार्यालय</span>
+                    </div>
+                    <div class="detail-row" style="font-size:0.9rem; color:var(--text-gold);">
+                        <span>पत्ता : नवी मुंबई, महाराष्ट्र</span>
+                    </div>
+                </div>
+
+                <!-- Blessings -->
+                <p class="blessings-text">
+                    आपल्या सहकुटुंब उपस्थितीने<br>
+                    या मांगल्य सोहळ्याची शोभा वाढवावी<br>
+                    ही नम्र विनंती <i class="fa-solid fa-hands-praying" style="color:var(--gold); font-size:1rem;"></i>
+                </p>
+                <p style="font-family:'Noto Sans Devanagari',serif; color:var(--text-gold); font-size:0.85rem; margin-top:6px;">
+                    — सौ. कुलकर्णी परिवार & सौ. देशमुख परिवार —
+                </p>
+            </div>
+
+            <!-- Footer -->
+            <div class="card-footer">
+                <i class="fa-solid fa-diya footer-icon"></i> आपले स्वागत आहे <i class="fa-solid fa-diya footer-icon"></i>
+            </div>
+
+            <!-- RSVP Button -->
+            <div class="rsvp-section">
+                <button class="rsvp-btn" id="rsvpBtn" onclick="openRSVP()">
+                    <i class="fa-solid fa-envelope"></i> आपली उपस्थिती नोंदवा
+                </button>
+            </div>
+
+            <!-- Bottom Border Pattern -->
+            <div class="border-pattern-bottom"></div>
+        </div>
+    </div>
+
+    <!-- RSVP Modal -->
+    <div class="modal-overlay" id="rsvpModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeRSVP()">&times;</button>
+            <i class="fa-solid fa-heart modal-icon"></i>
+            <p class="modal-title">धन्यवाद !</p>
+            <p class="modal-message">
+                आपली उपस्थिती आमच्यासाठी<br>
+                अत्यंत आनंददायी राहील !<br><br>
+                <span style="font-size:0.9rem; color:var(--text-gold);">
+                    कृपया आपली उपस्थिती नक्की कळवा ।<br>
+                    📞 संपर्क: ९८७६५४३२१०
+                </span>
+            </p>
+            <button class="rsvp-btn" style="margin-top:15px; padding:10px 30px; font-size:0.9rem;" onclick="closeRSVP()">
+                बंद करा
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // === Floating Particles (Font Awesome icons) ===
+        const particlesContainer = document.getElementById('particlesContainer');
+        const particleIcons = [
+            'fa-star', 'fa-heart', 'fa-gem', 'fa-feather',
+            'fa-leaf', 'fa-seedling', 'fa-snowflake', 'fa-crown',
+            'fa-dove', 'fa-hand-sparkles', 'fa-hands-praying', 'fa-om',
+            'fa-sparkles', 'fa-diya'
+        ];
+
+        function createParticle() {
+            const particle = document.createElement('i');
+            const iconClass = particleIcons[Math.floor(Math.random() * particleIcons.length)];
+            particle.className = `particle fa-solid ${iconClass}`;
+            particle.style.left = Math.random() * 95 + '%';
+            particle.style.fontSize = (Math.random() * 18 + 12) + 'px';
+            particle.style.animationDuration = (Math.random() * 10 + 7) + 's';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particlesContainer.appendChild(particle);
+
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.remove();
+                }
+            }, 18000);
+        }
+
+        // Create initial particles
+        for (let i = 0; i < 25; i++) {
+            setTimeout(createParticle, i * 400);
+        }
+        setInterval(createParticle, 2500);
+
+        // === RSVP Modal ===
+        const rsvpModal = document.getElementById('rsvpModal');
+
+        function openRSVP() {
+            rsvpModal.classList.add('active');
+            createSparkles(event);
+        }
+
+        function closeRSVP() {
+            rsvpModal.classList.remove('active');
+        }
+
+        rsvpModal.addEventListener('click', function(e) {
+            if (e.target === rsvpModal) {
+                closeRSVP();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && rsvpModal.classList.contains('active')) {
+                closeRSVP();
+            }
+        });
+
+        // === Sparkle effect on click (Font Awesome icons) ===
+        function createSparkles(e) {
+            const sparkleIcons = ['fa-star', 'fa-heart', 'fa-gem', 'fa-sparkles', 'fa-feather', 'fa-seedling'];
+            const count = 10;
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('i');
+                const iconClass = sparkleIcons[Math.floor(Math.random() * sparkleIcons.length)];
+                sparkle.className = `sparkle fa-solid ${iconClass}`;
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.setProperty('--dx', (Math.random() - 0.5) * 180 + 'px');
+                sparkle.style.setProperty('--dy', (Math.random() - 0.5) * 180 + 'px');
+                sparkle.style.fontSize = (Math.random() * 16 + 10) + 'px';
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    if (sparkle.parentNode) sparkle.remove();
+                }, 900);
+            }
+        }
+
+        document.getElementById('invitationCard').addEventListener('click', function(e) {
+            if (e.target.closest('#rsvpBtn') || e.target.closest('.modal-box') || e.target.closest('.modal-overlay')) {
+                return;
+            }
+            createSparkles(e);
+        });
+
+        // === Subtle card tilt on mouse move (desktop) ===
+        const card = document.getElementById('invitationCard');
+        if (window.matchMedia('(min-width: 768px)').matches) {
+            document.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const percentX = (e.clientX - centerX) / (rect.width / 2);
+                const percentY = (e.clientY - centerY) / (rect.height / 2);
+                const maxTilt = 5;
+                const tiltX = -percentY * maxTilt;
+                const tiltY = percentX * maxTilt;
+                card.style.transform = `perspective(1500px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+                card.style.transition = 'transform 0.2s ease-out';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg)';
+                card.style.transition = 'transform 0.8s ease';
+            });
+        }
+
+        console.log('%c✨ %cशुभ विवाह %c✨ %c| %cप्रियंका 💑 रोहन %c| %c२१ फेब्रुवारी २०२६',
+            'font-size:20px;', 'font-size:22px;color:#D4A843;font-weight:bold;',
+            'font-size:20px;', '', 'font-size:16px;color:#8B1A2B;', '',
+            'font-size:14px;color:#D4A843;');
+    </script>
+</body>
+</html>
