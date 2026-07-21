@@ -61,7 +61,7 @@
     --detail-shadow: rgba(180,120,140,0.08);
 }
 
-/* ---------- Border Patterns (mobile friendly) ---------- */
+/* ---------- Border Patterns ---------- */
 [data-border="geometric"] .border-pattern-top,
 [data-border="geometric"] .border-pattern-bottom {
     background:
