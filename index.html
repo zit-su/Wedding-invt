@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>॥ शुभ विवाह ॥ - Wedding Invitation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Tangerine:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans Devanagari', 'Cormorant Garamond', serif;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 10px;
+            background-attachment: fixed; transition: background 0.5s ease;
+            background-image: radial-gradient(ellipse at center, var(--bg-glow-center) 0%, var(--bg-glow-edge) 60%, #000000 100%);
+            position: relative;
+        }
+
+        /* Edit Button */
+        .edit-btn {
+            position: fixed; top: 15px; left: 15px; z-index: 20;
+            background: var(--gold); color: var(--dark-red);
+            border: none; border-radius: 50%; width: 48px; height: 48px;
+            font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .edit-btn:hover { transform: scale(1.1); background: var(--deep-gold); }
+
+        /* Editor Overlay */
+        .editor-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 200;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s;
+        }
+        .editor-overlay.active {
+            opacity: 1; pointer-events: all;
+        }
+        .editor-panel {
+            background: var(--cream); border-radius: 24px;
+            width: 95%; max-width: 500px; max-height: 85vh;
+            overflow-y: auto; padding: 25px 20px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            border: 3px solid var(--gold);
+        }
+        .editor-panel h3 {
+            font-family: 'Noto Sans Devanagari',serif; color: var(--maroon);
+            font-size: 1.4rem; text-align: center; margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold); padding-bottom: 8px;
+        }
+        .editor-close {
+            position: absolute; top: 10px; right: 15px; font-size: 1.8rem;
+            background: none; border: none; color: var(--maroon); cursor: pointer;
+        }
+        .editor-field {
+            margin-bottom: 15px;
+        }
+        .editor-field label {
+            display: block; font-size: 0.9rem; font-weight: 600;
+            color: var(--maroon); margin-bottom: 4px;
+        }
+        .editor-field input {
+            width: 100%; padding: 12px 14px; border-radius: 12px;
+            border: 1px solid var(--border-gold); background: white;
+            font-family: 'Noto Sans Devanagari', serif; font-size: 1rem;
+            color: var(--text-dark); outline: none; transition: border 0.2s;
+        }
+        .editor-field input:focus {
+            border-color: var(--gold); box-shadow: 0 0 0 3px var(--shadow-gold);
+        }
+        .save-btn {
+            background: var(--maroon); color: var(--gold);
+            border: none; padding: 14px; border-radius: 30px;
+            font-weight: 700; font-size: 1.1rem; width: 100%;
+            cursor: pointer; margin-top: 10px; transition: 0.3s;
+        }
+        .save-btn:hover { background: var(--dark-red); }
+
+        /* Main card styles (mobile‑first) */
+        .invitation-wrapper { position: relative; z-index: 1; width: 100%; max-width: 400px; }
+        .invitation-card {
+            background: var(--cream); border-radius: 18px; overflow: hidden;
+            box-shadow: 0 0 0 4px var(--border-gold), 0 0 0 8px var(--maroon), 0 0 0 12px var(--gold), 0 0 0 16px var(--dark-red), 0 15px 40px rgba(0,0,0,0.6), 0 0 80px var(--glow-outer);
+            animation: cardGlowMobile 4s ease-in-out infinite; transition: 0.5s;
+        }
+        @keyframes cardGlowMobile {
+            0%,100% { box-shadow: 0 0 0 4px var(--border-gold),0 0 0 8px var(--maroon),0 0 0 12px var(--gold),0 0 0 16px var(--dark-red),0 15px 40px rgba(0,0,0,0.6),0 0 80px var(--glow-outer); }
+            50% { box-shadow: 0 0 0 4px var(--border-gold),0 0 0 8px var(--maroon),0 0 0 12px var(--gold),0 0 0 16px var(--dark-red),0 15px 40px rgba(0,0,0,0.6),0 0 120px var(--glow-strong); }
+        }
+
+        .border-pattern-top, .border-pattern-bottom { width: 100%; height: 30px; position: relative; }
+        .border-pattern-top::after, .border-pattern-bottom::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 6px;
+            background: var(--gold); box-shadow: 0 2px 8px var(--shadow-gold); transition: 0.5s;
+        }
+        .border-pattern-bottom::after { bottom: auto; top: 0; }
+        .motif-row { display: flex; justify-content: center; gap: 12px; padding: 12px 10px 5px; font-size: 24px; color: var(--gold); background: linear-gradient(180deg, rgba(139,26,43,0.08) 0%, transparent 100%); }
+        .motif-row i { font-size: 28px; animation: kalashGlow 3s ease-in-out infinite; }
+        .motif-row i:nth-child(2) { font-size: 36px; }
+        @keyframes kalashGlow { 0%,100%{text-shadow:0 0 15px var(--shadow-gold);transform:scale(1)} 50%{text-shadow:0 0 30px var(--glow-strong-icon);transform:scale(1.08)} }
+        .ganesh-section { text-align: center; padding: 5px 20px 0; }
+        .ganesh-icon { font-size: 48px; color: var(--gold); animation: gentleBounce 2.5s infinite; filter: drop-shadow(0 3px 8px var(--shadow-gold)); }
+        .shloka { color: var(--maroon); font-size: 0.85rem; font-weight: 600; margin-top: 4px; opacity: 0.85; }
+        .card-content { padding: 8px 18px 18px; text-align: center; background: radial-gradient(ellipse at 50% 0%, var(--content-glow-top) 0%, transparent 60%), radial-gradient(ellipse at 50% 100%, var(--content-glow-bottom) 0%, transparent 50%), var(--cream); }
+        .ornament-divider { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 6px 0 12px; }
+        .ornament-line { width: 40px; height: 1.5px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .ornament-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); box-shadow: 0 0 8px var(--shadow-gold); animation: diamondPulse 2s infinite; }
+        @keyframes diamondPulse { 0%,100%{box-shadow:0 0 8px var(--shadow-gold)} 50%{box-shadow:0 0 20px var(--glow-strong-diamond)} }
+        .ornament-icon { font-size: 1rem; color: var(--gold); filter: drop-shadow(0 0 4px var(--shadow-gold)); }
+        .title-marathi { font-size: 1rem; font-weight: 700; color: var(--maroon); letter-spacing: 2px; }
+        .main-title { font-family: 'Great Vibes',cursive; font-size: 2.4rem; color: var(--maroon); line-height: 1; margin: 2px 0; text-shadow: 1px 1px 0 rgba(180,130,40,0.4); }
+        .sub-title-marathi { font-size: 0.9rem; font-weight: 600; color: var(--text-gold); letter-spacing: 2px; }
+        .couple-section { margin: 12px 0; }
+        .names-container { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .name-marathi { font-size: 1.8rem; font-weight: 700; color: var(--maroon); line-height: 1.2; }
+        .name-english { font-size: 0.85rem; font-weight: 500; color: var(--text-gold); font-style: italic; }
+        .name-label { font-size: 0.7rem; font-weight: 500; color: var(--saffron); }
+        .heart-icon { font-size: 1.4rem; color: var(--gold); animation: plusGlow 2s infinite; }
+        .details-section { background: linear-gradient(135deg, var(--detail-bg1) 0%, var(--detail-bg2) 50%, var(--detail-bg1) 100%); border: 1.5px solid var(--border-gold); border-radius: 14px; padding: 14px 16px; margin: 12px 0; box-shadow: inset 0 0 30px var(--detail-shadow); }
+        .detail-row { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 6px 0; font-size: 0.9rem; color: var(--text-dark); font-weight: 500; flex-wrap: wrap; }
+        .detail-icon { font-size: 1rem; color: var(--gold); width: 20px; }
+        .detail-highlight { color: var(--maroon); font-weight: 700; font-size: 1rem; }
+        .detail-date { font-family: 'Cormorant Garamond',serif; font-size: 1.2rem; font-weight: 600; color: var(--maroon); }
+        .venue-name { font-weight: 700; color: var(--dark-red); font-size: 0.95rem; }
+        .blessings-text { font-size: 0.8rem; color: var(--text-gold); margin-top: 10px; line-height: 1.5; }
+        .card-footer { text-align: center; padding: 8px 20px 14px; font-size: 0.8rem; color: var(--maroon); font-weight: 600; }
+        .footer-icon { font-size: 1.2rem; color: var(--gold); vertical-align: middle; margin: 0 3px; }
+        .rsvp-section { text-align: center; padding: 0 20px 18px; }
+        .rsvp-btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 30px; background: linear-gradient(135deg, var(--maroon), var(--dark-red)); color: var(--gold); font-size: 0.9rem; font-weight: 700; border: 1.5px solid var(--gold); border-radius: 40px; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(139,26,43,0.4); }
+        .rsvp-btn:active { transform: scale(0.96); }
+
+        /* Particles */
+        .particles-container { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events: none; z-index:0; overflow:hidden; }
+        .particle { position: absolute; opacity: 0; animation: floatUp 8s infinite ease-in; color: var(--gold); text-shadow: 0 0 10px var(--shadow-gold); }
+        @keyframes floatUp { 0%{transform:translateY(110vh) rotate(0deg) scale(0.3); opacity:0} 10%{opacity:0.8} 40%{opacity:0.6} 80%{opacity:0.2} 100%{transform:translateY(-10vh) rotate(360deg) scale(1.2); opacity:0} }
+
+        /* Modal */
+        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.75); z-index:1000; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition: opacity 0.4s; }
+        .modal-overlay.active { opacity:1; pointer-events:all; }
+        .modal-box { background: var(--cream); border-radius: 20px; padding: 25px 20px; max-width: 350px; width:90%; border: 4px solid var(--gold); text-align: center; animation: modalPop 0.5s ease; }
+        @keyframes modalPop { 0%{transform:scale(0.7) translateY(30px); opacity:0} 100%{transform:scale(1) translateY(0); opacity:1} }
+        .modal-close { position: absolute; top:8px; right:12px; font-size:1.6rem; cursor:pointer; color:var(--maroon); background:none; border:none; }
+        .modal-title { font-size: 1.3rem; color: var(--maroon); font-weight: 700; margin: 8px 0; }
+        .modal-message { font-size: 0.9rem; color: var(--text-dark); }
+        .modal-icon { font-size: 40px; color: var(--gold); animation: gentleBounce 1.5s infinite; }
+
+        /* Hide desktop tilt on mobile (already no tilt script) */
+    </style>
+</head>
+<body data-theme="maroon-gold" data-border="geometric">
+
+    <!-- Edit Button -->
+    <button class="edit-btn" id="openEditorBtn" aria-label="Edit invitation"><i class="fa-solid fa-pen-to-square"></i></button>
+
+    <!-- Editor Overlay -->
+    <div class="editor-overlay" id="editorOverlay">
+        <div class="editor-panel">
+            <button class="editor-close" id="closeEditorBtn">&times;</button>
+            <h3>📝 आमंत्रण तपशील</h3>
+            <div class="editor-field">
+                <label>वधूचे नाव (मराठी)</label>
+                <input type="text" id="brideMr" placeholder="प्रियंका">
+            </div>
+            <div class="editor-field">
+                <label>Bride Name (English)</label>
+                <input type="text" id="brideEn" placeholder="Priyanka">
+            </div>
+            <div class="editor-field">
+                <label>वराचे नाव (मराठी)</label>
+                <input type="text" id="groomMr" placeholder="रोहन">
+            </div>
+            <div class="editor-field">
+                <label>Groom Name (English)</label>
+                <input type="text" id="groomEn" placeholder="Rohan">
+            </div>
+            <div class="editor-field">
+                <label>दिनांक (मराठी)</label>
+                <input type="text" id="dateMr" placeholder="२१ फेब्रुवारी २०२६">
+            </div>
+            <div class="editor-field">
+                <label>Date (English)</label>
+                <input type="text" id="dateEn" placeholder="21 Feb 2026">
+            </div>
+            <div class="editor-field">
+                <label>मुहूर्त (मराठी)</label>
+                <input type="text" id="timeMr" placeholder="सायंकाळी ६:३० वाजता">
+            </div>
+            <div class="editor-field">
+                <label>Time (English)</label>
+                <input type="text" id="timeEn" placeholder="6:30 PM">
+            </div>
+            <div class="editor-field">
+                <label>स्थळ (Venue Marathi)</label>
+                <input type="text" id="venueMr" placeholder="श्री साई मंगल कार्यालय">
+            </div>
+            <div class="editor-field">
+                <label>पत्ता (Address)</label>
+                <input type="text" id="address" placeholder="नवी मुंबई, महाराष्ट्र">
+            </div>
+            <div class="editor-field">
+                <label>परिवार (Family line)</label>
+                <input type="text" id="familyLine" placeholder="सौ. कुलकर्णी परिवार & सौ. देशमुख परिवार">
+            </div>
+            <div class="editor-field">
+                <label>संपर्क (Contact number)</label>
+                <input type="text" id="contact" placeholder="९८७६५४३२१०">
+            </div>
+            <button class="save-btn" id="saveEditorBtn">जतन करा (Save)</button>
+        </div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <!-- Main Invitation Card (mobile optimized) -->
+    <div class="invitation-wrapper">
+        <div class="invitation-card" id="invitationCard">
+            <div class="border-pattern-top"></div>
+            <div class="motif-row">
+                <i class="fa-solid fa-gem"></i>
+                <i class="fa-solid fa-sparkles"></i>
+                <i class="fa-solid fa-gem"></i>
+            </div>
+            <div class="ganesh-section">
+                <i class="fa-solid fa-om ganesh-icon"></i>
+                <p class="shloka">॥ श्री गणेशाय नमः ॥</p>
+                <p class="shloka" style="font-size:0.7rem;">वक्रतुंड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
+            </div>
+            <div class="ornament-divider">
+                <span class="ornament-line"></span><span class="ornament-diamond"></span><span class="ornament-line"></span>
+                <i class="fa-solid fa-star ornament-icon"></i>
+                <span class="ornament-line"></span><span class="ornament-diamond"></span><span class="ornament-line"></span>
+            </div>
+            <div class="card-content">
+                <p class="title-marathi">॥ शुभ विवाह ॥</p>
+                <h1 class="main-title">Wedding Invitation</h1>
+                <p class="sub-title-marathi">सौ. अविस्मरणीय सोहळा</p>
+                <div class="ornament-divider" style="margin:4px 0;">
+                    <i class="fa-solid fa-star ornament-icon"></i>
+                    <span class="ornament-line" style="width:25px;"></span>
+                    <i class="fa-solid fa-heart ornament-icon" style="font-size:0.8rem;"></i>
+                    <span class="ornament-line" style="width:25px;"></span>
+                    <i class="fa-solid fa-star ornament-icon"></i>
+                </div>
+                <div class="couple-section">
+                    <div class="names-container">
+                        <div class="name-block"><p class="name-label">वधू</p><p class="name-marathi" id="displayBrideMr">प्रियंका</p><p class="name-english" id="displayBrideEn">Priyanka</p></div>
+                        <i class="fa-solid fa-heart heart-icon"></i>
+                        <div class="name-block"><p class="name-label">वर</p><p class="name-marathi" id="displayGroomMr">रोहन</p><p class="name-english" id="displayGroomEn">Rohan</p></div>
+                    </div>
+                </div>
+                <div class="details-section">
+                    <div class="detail-row"><i class="fa-solid fa-calendar-days detail-icon"></i><span>दिनांक :</span><span class="detail-date" id="displayDateMr">२१ फेब्रुवारी २०२६</span> <span style="color:var(--text-gold);" id="displayDateEn">| 21 Feb 2026</span></div>
+                    <div class="detail-row"><i class="fa-solid fa-clock detail-icon"></i><span>मुहूर्त :</span><span class="detail-highlight" id="displayTimeMr">सायंकाळी ६:३० वाजता</span> <span style="color:var(--text-gold);" id="displayTimeEn">| 6:30 PM</span></div>
+                    <div class="detail-row"><i class="fa-solid fa-location-dot detail-icon"></i><span>स्थळ :</span><span class="venue-name" id="displayVenue">श्री साई मंगल कार्यालय</span></div>
+                    <div class="detail-row" style="font-size:0.8rem; color:var(--text-gold);" id="displayAddress">पत्ता : नवी मुंबई, महाराष्ट्र</div>
+                </div>
+                <p class="blessings-text">आपल्या सहकुटुंब उपस्थितीने<br>या मांगल्य सोहळ्याची शोभा वाढवावी<br>ही नम्र विनंती <i class="fa-solid fa-hands-praying" style="color:var(--gold); font-size:0.9rem;"></i></p>
+                <p style="font-size:0.75rem; color:var(--text-gold); margin-top:4px;" id="displayFamily">— सौ. कुलकर्णी परिवार & सौ. देशमुख परिवार —</p>
+            </div>
+            <div class="card-footer">
+                <i class="fa-solid fa-diya footer-icon"></i> आपले स्वागत आहे <i class="fa-solid fa-diya footer-icon"></i>
+            </div>
+            <div class="rsvp-section">
+                <button class="rsvp-btn" id="rsvpBtn" onclick="openRSVP()"><i class="fa-solid fa-envelope"></i> आपली उपस्थिती नोंदवा</button>
+            </div>
+            <div class="border-pattern-bottom"></div>
+        </div>
+    </div>
+
+    <!-- RSVP Modal -->
+    <div class="modal-overlay" id="rsvpModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeRSVP()">&times;</button>
+            <i class="fa-solid fa-heart modal-icon"></i>
+            <p class="modal-title">धन्यवाद !</p>
+            <p class="modal-message">आपली उपस्थिती आमच्यासाठी<br>अत्यंत आनंददायी राहील !<br><br>
+            <span style="font-size:0.8rem; color:var(--text-gold);">कृपया आपली उपस्थिती नक्की कळवा ।<br>📞 <span id="displayContact">९८७६५४३२१०</span></span></p>
+            <button class="rsvp-btn" style="margin-top:12px; padding:8px 22px; font-size:0.8rem;" onclick="closeRSVP()">बंद करा</button>
+        </div>
+    </div>
+
+    <script>
+        // ---------- THEME & BORDER ----------
+        const body = document.body;
+        function changeTheme(theme) { body.setAttribute('data-theme', theme); localStorage.setItem('wedding-theme', theme); }
+        function changeBorder(border) { body.setAttribute('data-border', border); localStorage.setItem('wedding-border', border); }
+        const savedTheme = localStorage.getItem('wedding-theme') || 'maroon-gold';
+        const savedBorder = localStorage.getItem('wedding-border') || 'geometric';
+        body.setAttribute('data-theme', savedTheme);
+        body.setAttribute('data-border', savedBorder);
+
+        // ---------- EDITOR LOGIC ----------
+        const editorOverlay = document.getElementById('editorOverlay');
+        const openBtn = document.getElementById('openEditorBtn');
+        const closeBtn = document.getElementById('closeEditorBtn');
+        const saveBtn = document.getElementById('saveEditorBtn');
+
+        // Inputs
+        const inputs = {
+            brideMr: document.getElementById('brideMr'),
+            brideEn: document.getElementById('brideEn'),
+            groomMr: document.getElementById('groomMr'),
+            groomEn: document.getElementById('groomEn'),
+            dateMr: document.getElementById('dateMr'),
+            dateEn: document.getElementById('dateEn'),
+            timeMr: document.getElementById('timeMr'),
+            timeEn: document.getElementById('timeEn'),
+            venueMr: document.getElementById('venueMr'),
+            address: document.getElementById('address'),
+            familyLine: document.getElementById('familyLine'),
+            contact: document.getElementById('contact')
+        };
+
+        // Display elements
+        const displays = {
+            brideMr: document.getElementById('displayBrideMr'),
+            brideEn: document.getElementById('displayBrideEn'),
+            groomMr: document.getElementById('displayGroomMr'),
+            groomEn: document.getElementById('displayGroomEn'),
+            dateMr: document.getElementById('displayDateMr'),
+            dateEn: document.getElementById('displayDateEn'),
+            timeMr: document.getElementById('displayTimeMr'),
+            timeEn: document.getElementById('displayTimeEn'),
+            venue: document.getElementById('displayVenue'),
+            address: document.getElementById('displayAddress'),
+            family: document.getElementById('displayFamily'),
+            contact: document.getElementById('displayContact')
+        };
+
+        // Default values
+        const defaults = {
+            brideMr: 'प्रियंका', brideEn: 'Priyanka',
+            groomMr: 'रोहन', groomEn: 'Rohan',
+            dateMr: '२१ फेब्रुवारी २०२६', dateEn: '21 Feb 2026',
+            timeMr: 'सायंकाळी ६:३० वाजता', timeEn: '6:30 PM',
+            venueMr: 'श्री साई मंगल कार्यालय',
+            address: 'नवी मुंबई, महाराष्ट्र',
+            familyLine: 'सौ. कुलकर्णी परिवार & सौ. देशमुख परिवार',
+            contact: '९८७६५४३२१०'
+        };
+
+        // Load saved data from localStorage
+        function loadData() {
+            const data = JSON.parse(localStorage.getItem('weddingData')) || {};
+            for (let key in defaults) {
+                const value = data[key] || defaults[key];
+                inputs[key].value = value;
+                updateDisplay(key, value);
+            }
+        }
+
+        function updateDisplay(key, value) {
+            if (displays[key]) {
+                if (key === 'address') {
+                    displays[key].textContent = 'पत्ता : ' + value;
+                } else if (key === 'family') {
+                    displays.family.textContent = '— ' + value + ' —';
+                } else if (key === 'contact') {
+                    displays.contact.textContent = value;
+                } else if (key === 'dateEn' || key === 'timeEn') {
+                    // keep as is, they are updated together with their Mr counterparts
+                } else {
+                    displays[key].textContent = value;
+                }
+            }
+            // Special handling for combined date/time English
+            if (key === 'dateEn') {
+                const dateMrValue = inputs.dateMr.value;
+                displays.dateMr.textContent = dateMrValue;
+                // The dateEn is displayed as a span after the main date, but we use a combined element. We'll just update innerHTML of the parent.
+                const dateRow = document.querySelector('.detail-date').parentNode;
+                if (dateRow) {
+                    const dateMrEl = dateRow.querySelector('.detail-date');
+                    if (dateMrEl) dateMrEl.textContent = dateMrValue;
+                    const enSpan = dateRow.querySelector('span[style*="color:var(--text-gold)"]');
+                    if (enSpan) enSpan.textContent = '| ' + inputs.dateEn.value;
+                }
+            }
+            if (key === 'timeEn') {
+                const timeRow = document.querySelector('.detail-highlight').parentNode;
+                if (timeRow) {
+                    const timeMrEl = timeRow.querySelector('.detail-highlight');
+                    if (timeMrEl) timeMrEl.textContent = inputs.timeMr.value;
+                    const enSpan = timeRow.querySelector('span[style*="color:var(--text-gold)"]');
+                    if (enSpan) enSpan.textContent = '| ' + inputs.timeEn.value;
+                }
+            }
+        }
+
+        function saveData() {
+            const data = {};
+            for (let key in inputs) {
+                data[key] = inputs[key].value.trim() || defaults[key];
+            }
+            localStorage.setItem('weddingData', JSON.stringify(data));
+            // Update all displays
+            for (let key in data) {
+                updateDisplay(key, data[key]);
+            }
+            // Also update the date/time combined fields
+            updateDisplay('dateEn', data.dateEn);
+            updateDisplay('timeEn', data.timeEn);
+            // Venue and family etc
+            displays.venue.textContent = data.venueMr;
+            displays.address.textContent = 'पत्ता : ' + data.address;
+            displays.family.textContent = '— ' + data.familyLine + ' —';
+            displays.contact.textContent = data.contact;
+            editorOverlay.classList.remove('active');
+        }
+
+        // Real-time update as user types (for immediate preview)
+        for (let key in inputs) {
+            inputs[key].addEventListener('input', function() {
+                const value = this.value || defaults[key];
+                updateDisplay(key, value);
+                // Sync date/time combos
+                if (key === 'dateEn' || key === 'dateMr') {
+                    updateDisplay('dateMr', inputs.dateMr.value);
+                    updateDisplay('dateEn', inputs.dateEn.value);
+                }
+                if (key === 'timeEn' || key === 'timeMr') {
+                    updateDisplay('timeMr', inputs.timeMr.value);
+                    updateDisplay('timeEn', inputs.timeEn.value);
+                }
+            });
+        }
+
+        // Open / close editor
+        openBtn.addEventListener('click', () => {
+            editorOverlay.classList.add('active');
+            // load current data into fields
+            const data = JSON.parse(localStorage.getItem('weddingData')) || {};
+            for (let key in defaults) {
+                inputs[key].value = data[key] || defaults[key];
+            }
+        });
+        closeBtn.addEventListener('click', () => editorOverlay.classList.remove('active'));
+        saveBtn.addEventListener('click', saveData);
+        editorOverlay.addEventListener('click', (e) => {
+            if (e.target === editorOverlay) editorOverlay.classList.remove('active');
+        });
+
+        // Initial load
+        loadData();
+        // Also set contact in RSVP modal
+        const savedContact = JSON.parse(localStorage.getItem('weddingData'))?.contact || defaults.contact;
+        displays.contact.textContent = savedContact;
+
+        // ---------- PARTICLES ----------
+        const particlesContainer = document.getElementById('particlesContainer');
+        const icons = ['fa-star','fa-heart','fa-gem','fa-feather','fa-leaf','fa-seedling','fa-snowflake','fa-crown','fa-dove','fa-hand-sparkles','fa-hands-praying','fa-om','fa-sparkles','fa-diya'];
+        function createParticle() {
+            const p = document.createElement('i');
+            p.className = `particle fa-solid ${icons[Math.floor(Math.random()*icons.length)]}`;
+            p.style.left = Math.random()*95+'%';
+            p.style.fontSize = (Math.random()*14+10)+'px';
+            p.style.animationDuration = (Math.random()*8+6)+'s';
+            p.style.animationDelay = Math.random()*6+'s';
+            particlesContainer.appendChild(p);
+            setTimeout(()=>{ if(p.parentNode) p.remove(); }, 16000);
+        }
+        for(let i=0;i<20;i++) setTimeout(createParticle, i*300);
+        setInterval(createParticle, 2200);
+
+        // ---------- RSVP MODAL ----------
+        const rsvpModal = document.getElementById('rsvpModal');
+        function openRSVP() { rsvpModal.classList.add('active'); }
+        function closeRSVP() { rsvpModal.classList.remove('active'); }
+        rsvpModal.addEventListener('click', e => { if(e.target===rsvpModal) closeRSVP(); });
+        document.addEventListener('keydown', e => { if(e.key==='Escape' && rsvpModal.classList.contains('active')) closeRSVP(); });
+
+        // ---------- SPARKLES ON CARD CLICK ----------
+        function createSparkles(e) {
+            const sparkIcons = ['fa-star','fa-heart','fa-gem','fa-sparkles','fa-feather','fa-seedling'];
+            for(let i=0;i<8;i++) {
+                const s = document.createElement('i');
+                s.className = `fa-solid ${sparkIcons[Math.floor(Math.random()*sparkIcons.length)]}`;
+                s.style.position = 'fixed'; s.style.pointerEvents = 'none'; s.style.zIndex = '9999';
+                s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
+                s.style.setProperty('--dx', (Math.random()-0.5)*120+'px');
+                s.style.setProperty('--dy', (Math.random()-0.5)*120+'px');
+                s.style.animation = 'sparkleBurst 0.8s ease-out forwards';
+                s.style.color = 'var(--gold)';
+                s.style.fontSize = (Math.random()*14+10)+'px';
+                document.body.appendChild(s);
+                setTimeout(()=>{ if(s.parentNode) s.remove(); }, 900);
+            }
+        }
+        // Add CSS for sparkleBurst if not already defined
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = `
+            @keyframes sparkleBurst {
+                0% { transform: translate(0,0) scale(1); opacity:1; }
+                100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity:0; }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+        document.getElementById('invitationCard').addEventListener('click', function(e) {
+            if(e.target.closest('#rsvpBtn') || e.target.closest('.modal-box') || e.target.closest('.editor-overlay')) return;
+            createSparkles(e);
+        });
+
+        // Removed desktop tilt script – mobile only, no tilt needed.
+    </script>
+</body>
+</html>
