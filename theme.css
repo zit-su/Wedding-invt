@@ -1,0 +1,142 @@
+/* theme.css – Wedding invitation themes (color + border patterns) */
+
+/* ---------- Color Themes ---------- */
+[data-theme="maroon-gold"] {
+    --maroon: #8B1A2B; --gold: #D4A843; --deep-gold: #B8860B; --dark-red: #5C0E1A;
+    --saffron: #F4A460; --cream: #FFF8EC; --text-dark: #3D1C1C; --text-gold: #9B6B1E;
+    --shadow-gold: rgba(180,130,40,0.35); --border-gold: #C8963E;
+    --bg-glow-center: #2d0f0f; --bg-glow-edge: #0d0404;
+    --glow-outer: rgba(180,120,30,0.25); --glow-strong: rgba(210,150,50,0.45);
+    --glow-strong-icon: rgba(255,200,60,0.9); --glow-strong-diamond: rgba(255,180,50,0.9);
+    --content-glow-top: rgba(255,215,140,0.18); --content-glow-bottom: rgba(180,100,40,0.1);
+    --detail-bg1: rgba(139,26,43,0.06); --detail-bg2: rgba(180,130,40,0.08);
+    --detail-shadow: rgba(180,130,40,0.08);
+}
+
+[data-theme="royal-blue"] {
+    --maroon: #1A3B5C; --gold: #C4A35A; --deep-gold: #9B7A2E; --dark-red: #0D2847;
+    --saffron: #D4AF37; --cream: #F4F7FC; --text-dark: #1C2D3D; --text-gold: #7A6320;
+    --shadow-gold: rgba(196,163,90,0.35); --border-gold: #B89A4B;
+    --bg-glow-center: #0a1525; --bg-glow-edge: #050a14;
+    --glow-outer: rgba(100,130,180,0.25); --glow-strong: rgba(120,150,200,0.45);
+    --glow-strong-icon: rgba(200,180,100,0.9); --glow-strong-diamond: rgba(196,163,90,0.9);
+    --content-glow-top: rgba(200,215,240,0.18); --content-glow-bottom: rgba(100,120,160,0.1);
+    --detail-bg1: rgba(26,59,92,0.06); --detail-bg2: rgba(196,163,90,0.08);
+    --detail-shadow: rgba(100,130,180,0.08);
+}
+
+[data-theme="emerald"] {
+    --maroon: #1B4D3E; --gold: #C9A84C; --deep-gold: #A3832A; --dark-red: #0F362A;
+    --saffron: #D9B45A; --cream: #F2F9F2; --text-dark: #1C2E1C; --text-gold: #6B5A20;
+    --shadow-gold: rgba(201,168,76,0.35); --border-gold: #B29540;
+    --bg-glow-center: #0a1a14; --bg-glow-edge: #050d0a;
+    --glow-outer: rgba(70,130,100,0.25); --glow-strong: rgba(90,160,120,0.45);
+    --glow-strong-icon: rgba(210,190,80,0.9); --glow-strong-diamond: rgba(201,168,76,0.9);
+    --content-glow-top: rgba(200,230,200,0.18); --content-glow-bottom: rgba(80,140,100,0.1);
+    --detail-bg1: rgba(27,77,62,0.06); --detail-bg2: rgba(201,168,76,0.08);
+    --detail-shadow: rgba(70,130,100,0.08);
+}
+
+[data-theme="sunset"] {
+    --maroon: #9C2E1F; --gold: #F0B54B; --deep-gold: #C48B2A; --dark-red: #6B1D12;
+    --saffron: #F7A04A; --cream: #FFF7F0; --text-dark: #3E1C10; --text-gold: #B86B1A;
+    --shadow-gold: rgba(240,181,75,0.4); --border-gold: #D99B3A;
+    --bg-glow-center: #2B1210; --bg-glow-edge: #0F0604;
+    --glow-outer: rgba(200,120,40,0.3); --glow-strong: rgba(240,140,60,0.5);
+    --glow-strong-icon: rgba(255,200,80,0.9); --glow-strong-diamond: rgba(240,181,75,0.95);
+    --content-glow-top: rgba(255,220,160,0.2); --content-glow-bottom: rgba(200,100,50,0.1);
+    --detail-bg1: rgba(156,46,31,0.06); --detail-bg2: rgba(240,181,75,0.08);
+    --detail-shadow: rgba(200,120,40,0.08);
+}
+
+[data-theme="blush-pink"] {
+    --maroon: #A13D5C; --gold: #E0B0A0; --deep-gold: #C48B7A; --dark-red: #6E2A40;
+    --saffron: #F2B0A8; --cream: #FFF5F5; --text-dark: #3D1C2A; --text-gold: #9B5E6B;
+    --shadow-gold: rgba(224,176,160,0.4); --border-gold: #D4A090;
+    --bg-glow-center: #2B181E; --bg-glow-edge: #12080C;
+    --glow-outer: rgba(180,120,140,0.25); --glow-strong: rgba(220,140,160,0.45);
+    --glow-strong-icon: rgba(255,200,200,0.8); --glow-strong-diamond: rgba(224,176,160,0.9);
+    --content-glow-top: rgba(255,210,210,0.2); --content-glow-bottom: rgba(180,100,120,0.1);
+    --detail-bg1: rgba(161,61,92,0.06); --detail-bg2: rgba(224,176,160,0.1);
+    --detail-shadow: rgba(180,120,140,0.08);
+}
+
+/* ---------- Border Pattern Styles ---------- */
+/* Base: we override the background of .border-pattern-top and .border-pattern-bottom */
+/* The patterns are applied via data-border attribute on body */
+
+/* Geometric (default) */
+[data-border="geometric"] .border-pattern-top,
+[data-border="geometric"] .border-pattern-bottom {
+    background:
+        repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 2px, transparent 2px, transparent 8px, var(--maroon) 8px, var(--maroon) 10px, transparent 10px, transparent 16px),
+        linear-gradient(180deg, var(--dark-red) 0%, var(--maroon) 50%, var(--dark-red) 100%);
+}
+[data-border="geometric"] .border-pattern-top::after,
+[data-border="geometric"] .border-pattern-bottom::after {
+    background: var(--gold);
+}
+
+/* Floral – uses a floral motif repeating pattern */
+[data-border="floral"] .border-pattern-top,
+[data-border="floral"] .border-pattern-bottom {
+    background:
+        repeating-linear-gradient(90deg, transparent, transparent 19px, var(--gold) 19px, var(--gold) 21px, transparent 21px, transparent 39px, var(--maroon) 39px, var(--maroon) 41px),
+        linear-gradient(180deg, var(--dark-red) 0%, var(--maroon) 60%, var(--dark-red) 100%);
+    background-size: 60px 100%, 100% 100%;
+}
+[data-border="floral"] .border-pattern-top::before,
+[data-border="floral"] .border-pattern-bottom::before {
+    content: "❁  ❁  ❁  ❁  ❁  ❁  ❁  ❁";
+    position: absolute; top: 50%; left: 0; width: 100%;
+    transform: translateY(-50%);
+    font-size: 18px; color: var(--gold);
+    text-shadow: 0 0 8px var(--shadow-gold);
+    letter-spacing: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+[data-border="floral"] .border-pattern-top::after,
+[data-border="floral"] .border-pattern-bottom::after {
+    background: var(--gold);
+    z-index: 2;
+}
+
+/* Paisley – curved teardrop shapes simulated with gradients */
+[data-border="paisley"] .border-pattern-top,
+[data-border="paisley"] .border-pattern-bottom {
+    background:
+        repeating-linear-gradient(45deg, var(--maroon) 0px, var(--maroon) 2px, transparent 2px, transparent 12px),
+        repeating-linear-gradient(-45deg, var(--gold) 0px, var(--gold) 2px, transparent 2px, transparent 12px),
+        linear-gradient(180deg, var(--dark-red) 0%, var(--maroon) 50%, var(--dark-red) 100%);
+    background-size: 20px 20px, 20px 20px, 100% 100%;
+}
+[data-border="paisley"] .border-pattern-top::after,
+[data-border="paisley"] .border-pattern-bottom::after {
+    background: var(--gold);
+    box-shadow: 0 2px 12px var(--shadow-gold);
+}
+
+/* Minimalist – clean double line */
+[data-border="minimal"] .border-pattern-top,
+[data-border="minimal"] .border-pattern-bottom {
+    background: linear-gradient(180deg, var(--dark-red) 0%, var(--maroon) 100%);
+    height: 20px;
+}
+[data-border="minimal"] .border-pattern-top::after,
+[data-border="minimal"] .border-pattern-bottom::after {
+    height: 4px;
+    background: var(--gold);
+    box-shadow: none;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+[data-border="minimal"] .border-pattern-top {
+    border-bottom: 2px solid var(--gold);
+}
+[data-border="minimal"] .border-pattern-bottom {
+    border-top: 2px solid var(--gold);
+}
